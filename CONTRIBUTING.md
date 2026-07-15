@@ -112,7 +112,7 @@ Full standards and examples: **[community-scripts.org/docs/contribution](https:/
 Set the `dev_mode` variable to enable debugging features when testing. Flags can be combined (comma-separated):
 
 ```bash
-dev_mode="trace,keep" bash -c "$(curl -fsSL https://raw.githubusercontent.com/vinceTheProgrammer/ProxmoxVE-ottersnap-psql-patchmain/ct/myapp.sh)"
+dev_mode="trace,keep" bash -c "$(curl -fsSL https://raw.githubusercontent.com/vinceTheProgrammer/ProxmoxVE-ottersnap-psql-patch/main/ct/myapp.sh)"
 ```
 
 | Flag         | Description                                                  |

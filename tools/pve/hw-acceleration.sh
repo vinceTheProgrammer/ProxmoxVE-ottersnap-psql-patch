@@ -5,7 +5,7 @@
 # License: MIT
 # https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
 # Execute within the Proxmox shell
-# bash -c "$(curl -fsSL https://raw.githubusercontent.com/vinceTheProgrammer/ProxmoxVE-ottersnap-psql-patchmain/tools/pve/hw-acceleration.sh)"
+# bash -c "$(curl -fsSL https://raw.githubusercontent.com/vinceTheProgrammer/ProxmoxVE-ottersnap-psql-patch/main/tools/pve/hw-acceleration.sh)"
 
 set -e
 function header_info {
@@ -31,7 +31,7 @@ CM="${GN}✓${CL}"
 set -e
 
 # Telemetry
-source <(curl -fsSL https://raw.githubusercontent.com/vinceTheProgrammer/ProxmoxVE-ottersnap-psql-patchmain/misc/api.func) 2>/dev/null || true
+source <(curl -fsSL https://raw.githubusercontent.com/vinceTheProgrammer/ProxmoxVE-ottersnap-psql-patch/main/misc/api.func) 2>/dev/null || true
 declare -f init_tool_telemetry &>/dev/null && init_tool_telemetry "hw-acceleration" "pve"
 
 header_info
