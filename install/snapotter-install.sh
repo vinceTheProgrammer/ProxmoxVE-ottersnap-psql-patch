@@ -34,7 +34,9 @@ $STD apt install -y \
   python3 \
   python3-dev \
   gcc \
-  g++
+  g++ \
+  postgresql \
+  redis-server
 msg_ok "Installed Dependencies"
 
 PYTHON_VERSION="3.11" setup_uv
@@ -54,6 +56,40 @@ $STD uv venv --seed --python 3.11 /opt/snapotter_data/ai/venv
 ln -sfn /opt/snapotter /app
 msg_ok "Set up Python Environment"
 
+msg_info "Starting PostgreSQL"
+systemctl enable --now postgresql
+
+msg_info "Configuring PostgreSQL"
+
+sudo -u postgres psql <<'EOF'
+DO $$
+BEGIN
+    IF NOT EXISTS (
+        SELECT FROM pg_roles WHERE rolname='snapotter'
+    ) THEN
+        CREATE ROLE snapotter LOGIN PASSWORD 'snapotter';
+    END IF;
+END
+$$;
+
+CREATE DATABASE snapotter
+    OWNER snapotter
+    TEMPLATE template0
+    ENCODING 'UTF8'
+    LC_COLLATE 'C.UTF-8'
+    LC_CTYPE 'C.UTF-8';
+EOF 2>/dev/null || true
+
+sudo -u postgres psql <<'EOF'
+ALTER DATABASE snapotter OWNER TO snapotter;
+GRANT ALL PRIVILEGES ON DATABASE snapotter TO snapotter;
+EOF
+
+msg_ok "Configured PostgreSQL"
+
+msg_info "Starting Redis"
+systemctl enable --now redis-server
+
 msg_info "Configuring SnapOtter"
 mkdir -p /opt/snapotter_data/files
 mkdir -p /tmp/snapotter-workspace
@@ -61,7 +97,8 @@ mkdir -p /tmp/snapotter-workspace
 cat <<EOF >/opt/snapotter_data/.env
 PORT=1349
 NODE_ENV=production
-DB_PATH=/opt/snapotter_data/snapotter.db
+DATABASE_URL=postgres://snapotter:snapotter@localhost:5432/snapotter
+REDIS_URL=redis://localhost:6379
 WORKSPACE_PATH=/tmp/snapotter-workspace
 FILES_STORAGE_PATH=/opt/snapotter_data/files
 PYTHON_VENV_PATH=/opt/snapotter_data/ai/venv
@@ -85,13 +122,16 @@ PNPM_BIN="$(command -v pnpm)"
 cat <<EOF >/etc/systemd/system/snapotter.service
 [Unit]
 Description=SnapOtter Service
-After=network.target
+After=network-online.target postgresql.service redis-server.service
+Wants=network-online.target
+Requires=postgresql.service redis-server.service
 
 [Service]
 Type=simple
 User=root
 WorkingDirectory=/opt/snapotter
 EnvironmentFile=/opt/snapotter_data/.env
+ExecStartPre=/usr/bin/pg_isready -h localhost -p 5432
 ExecStart=${PNPM_BIN} --filter @snapotter/api run start
 Restart=on-failure
 RestartSec=5
