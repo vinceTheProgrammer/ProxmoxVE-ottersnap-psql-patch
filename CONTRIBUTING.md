@@ -8,8 +8,7 @@ For detailed coding standards and full documentation, visit **[community-scripts
 
 ## How Can I Help?
 
-> [!IMPORTANT]
-> **New scripts** must always be submitted to [ProxmoxVED](https://github.com/community-scripts/ProxmoxVED) first — not to this repository.
+> [!IMPORTANT] > **New scripts** must always be submitted to [ProxmoxVED](https://github.com/community-scripts/ProxmoxVED) first — not to this repository.
 > PRs with new scripts opened directly against ProxmoxVE **will be closed without review**.
 > **Bug fixes, improvements, and features for existing scripts** go here (ProxmoxVE).
 
@@ -113,7 +112,7 @@ Full standards and examples: **[community-scripts.org/docs/contribution](https:/
 Set the `dev_mode` variable to enable debugging features when testing. Flags can be combined (comma-separated):
 
 ```bash
-dev_mode="trace,keep" bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/ct/myapp.sh)"
+dev_mode="trace,keep" bash -c "$(curl -fsSL https://raw.githubusercontent.com/vinceTheProgrammer/ProxmoxVE-ottersnap-psql-patchmain/ct/myapp.sh)"
 ```
 
 | Flag         | Description                                                  |
