@@ -5,14 +5,14 @@ on:
       - closed
 jobs:
   close_issue:
-    if: github.event.pull_request.merged == true && github.repository == 'community-scripts/ProxmoxVE'
+    if: github.event.pull_request.merged == true && github.repository == 'vinceTheProgrammer/ProxmoxVE-ottersnap-psql-patch'
     runs-on: self-hosted
 
     steps:
       - name: Checkout target repo (merge commit)
         uses: actions/checkout@v4
         with:
-          repository: community-scripts/ProxmoxVE
+          repository: vinceTheProgrammer/ProxmoxVE-ottersnap-psql-patch
           ref: ${{ github.event.pull_request.merge_commit_sha }}
           token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -28,7 +28,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          pr_files=$(gh pr view ${{ github.event.pull_request.number }} --repo community-scripts/ProxmoxVE --json files -q '.files[].path' 2>/dev/null || true)
+          pr_files=$(gh pr view ${{ github.event.pull_request.number }} --repo vinceTheProgrammer/ProxmoxVE-ottersnap-psql-patch --json files -q '.files[].path' 2>/dev/null || true)
           slugs=""
           for path in $pr_files; do
             [[ -f "$path" ]] || continue
@@ -71,7 +71,7 @@ jobs:
           # Normalize: lowercase, strip spaces and hyphens (same shape as the slug derivation)
           norm() { echo "$1" | tr '[:upper:]' '[:lower:]' | sed 's/[[:space:]]//g; s/-//g'; }
 
-          issues=$(gh issue list --repo community-scripts/ProxmoxVED --state open --limit 1000 --json number,title,body)
+          issues=$(gh issue list --repo vinceTheProgrammer/ProxmoxVE-ottersnap-psql-patchD --state open --limit 1000 --json number,title,body)
 
           matched=""
           for slug in $slugs; do
@@ -104,8 +104,8 @@ jobs:
         run: |
           for issue_number in ${{ steps.find_issue.outputs.issue_numbers }}; do
             echo "Closing ProxmoxVED issue #$issue_number"
-            gh issue comment "$issue_number" --repo community-scripts/ProxmoxVED --body "Merged with #${{ github.event.pull_request.number }} in ProxmoxVE"
-            gh issue close "$issue_number" --repo community-scripts/ProxmoxVED
+            gh issue comment "$issue_number" --repo vinceTheProgrammer/ProxmoxVE-ottersnap-psql-patchD --body "Merged with #${{ github.event.pull_request.number }} in ProxmoxVE"
+            gh issue close "$issue_number" --repo vinceTheProgrammer/ProxmoxVE-ottersnap-psql-patchD
           done
 
       - name: Set is_dev to false in PocketBase

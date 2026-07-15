@@ -3,12 +3,12 @@ name: Archive Old Changelog Entries
 on:
   schedule:
     # Run every Sunday at 00:00 UTC
-    - cron: '0 0 * * 0'
+    - cron: "0 0 * * 0"
   workflow_dispatch:
 
 jobs:
   archive-changelog:
-    if: github.repository == 'community-scripts/ProxmoxVE'
+    if: github.repository == 'vinceTheProgrammer/ProxmoxVE-ottersnap-psql-patch'
     runs-on: ubuntu-latest
     env:
       BRANCH_NAME: github-action-archive-changelog
@@ -42,23 +42,23 @@ jobs:
           script: |
             const fs = require('fs').promises;
             const path = require('path');
-            
+
             const KEEP_DAYS = 30;
             const ARCHIVE_PATH = '.github/changelogs';
             const CHANGELOG_PATH = 'CHANGELOG.md';
-            
+
             // Calculate cutoff date
             const cutoffDate = new Date();
             cutoffDate.setDate(cutoffDate.getDate() - KEEP_DAYS);
             cutoffDate.setHours(0, 0, 0, 0);
-            
+
             console.log(`Cutoff date: ${cutoffDate.toISOString().split('T')[0]}`);
-            
+
             // Read changelog and normalize line endings
             let content = await fs.readFile(CHANGELOG_PATH, 'utf-8');
             content = content.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
             const lines = content.split('\n');
-            
+
             // Parse entries
             const datePattern = /^## (\d{4})-(\d{2})-(\d{2})$/;
             let header = [];
@@ -69,7 +69,7 @@ jobs:
             let inHeader = true;
             let inOldHistory = false;
             let historyDetailsDepth = 0;
-            
+
             for (let i = 0; i < lines.length; i++) {
               const line = lines[i];
               const match = line.match(datePattern);
@@ -131,7 +131,7 @@ jobs:
                 currentContent.push(line);
               }
             }
-            
+
             // Don't forget the last entry
             if (currentDate && currentContent.length > 0) {
               const entryText = currentContent.join('\n').trim();
@@ -151,17 +151,17 @@ jobs:
                 recentEntries.push(`## ${currentDate}\n\n${entryText}`);
               }
             }
-            
+
             console.log(`Recent entries: ${recentEntries.length}`);
             console.log(`Years to archive: ${Object.keys(archiveData).length}`);
-            
+
             // Month names in English
             const monthNames = {
               '01': 'January', '02': 'February', '03': 'March', '04': 'April',
               '05': 'May', '06': 'June', '07': 'July', '08': 'August',
               '09': 'September', '10': 'October', '11': 'November', '12': 'December'
             };
-            
+
             // Create/update archive files
             for (const year of Object.keys(archiveData).sort().reverse()) {
               const yearPath = path.join(ARCHIVE_PATH, year);
@@ -231,14 +231,14 @@ jobs:
                 }
               }
             }
-            
+
             // Build history section
             let historySection = [];
             historySection.push('');
             historySection.push('<details>');
             historySection.push('<summary><h2>📜 History</h2></summary>');
             historySection.push('');
-            
+
             // Get all years from archive directory
             let allYears = [];
             try {
@@ -247,7 +247,7 @@ jobs:
             } catch (e) {
               allYears = Object.keys(archiveData).sort().reverse();
             }
-            
+
             for (const year of allYears) {
               historySection.push('');
               historySection.push('<details>');
@@ -294,10 +294,10 @@ jobs:
               historySection.push('');
               historySection.push('</details>');
             }
-            
+
             historySection.push('');
             historySection.push('</details>');
-            
+
             // Build new CHANGELOG.md (History first, then recent entries)
             const newChangelog = [
               ...header,
@@ -306,7 +306,7 @@ jobs:
               '',
               recentEntries.join('\n\n')
             ].join('\n');
-            
+
             await fs.writeFile(CHANGELOG_PATH, newChangelog, 'utf-8');
             console.log('CHANGELOG.md updated successfully');
 

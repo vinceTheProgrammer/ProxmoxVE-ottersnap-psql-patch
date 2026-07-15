@@ -1,8 +1,7 @@
-<!--🛑 New scripts must be submitted to [ProxmoxVED](https://github.com/community-scripts/ProxmoxVED) for testing.
+<!--🛑 New scripts must be submitted to [ProxmoxVED](https://github.com/vinceTheProgrammer/ProxmoxVE-ottersnap-psql-patchD) for testing.
 PRs without prior testing will be closed. -->
 
 ## ✍️ Description
-
 
 ## 🔗 Related Issue
 
