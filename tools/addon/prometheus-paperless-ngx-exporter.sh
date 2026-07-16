@@ -2,7 +2,7 @@
 
 # Copyright (c) 2021-2026 community-scripts ORG
 # Author: Andy Grunwald (andygrunwald)
-# License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
+# License: MIT | https://github.com/vinceTheProgrammer/ProxmoxVE-ottersnap-psql-patch/raw/main/LICENSE
 # Source: https://github.com/hansmi/prometheus-paperless-exporter
 
 source <(curl -fsSL https://raw.githubusercontent.com/vinceTheProgrammer/ProxmoxVE-ottersnap-psql-patch/main/misc/core.func)

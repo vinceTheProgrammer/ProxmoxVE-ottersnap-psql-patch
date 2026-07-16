@@ -3,9 +3,9 @@
 # Copyright (c) 2021-2026 community-scripts ORG
 # Author: MickLesk (CanbiZ)
 # License: MIT
-# https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
+# https://github.com/vinceTheProgrammer/ProxmoxVE-ottersnap-psql-patch/raw/main/LICENSE
 
-source <(curl -fsSL https://raw.githubusercontent.com/vinceTheProgrammer/ProxmoxVE-ottersnap-psql-patchrefs/heads/main/misc/core.func)
+source <(curl -fsSL https://raw.githubusercontent.com/vinceTheProgrammer/ProxmoxVE-ottersnap-psql-patch/refs/heads/main/misc/core.func)
 source <(curl -fsSL https://raw.githubusercontent.com/vinceTheProgrammer/ProxmoxVE-ottersnap-psql-patch/main/misc/api.func) 2>/dev/null || true
 load_functions
 declare -f init_tool_telemetry &>/dev/null && init_tool_telemetry "disk-health" "pve"

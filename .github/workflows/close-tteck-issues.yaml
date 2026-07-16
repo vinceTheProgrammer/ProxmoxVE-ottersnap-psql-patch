@@ -5,7 +5,7 @@ on:
 
 jobs:
   close_tteck_issues:
-    if: github.repository == 'community-scripts/ProxmoxVE'
+    if: github.repository == 'vinceTheProgrammer/ProxmoxVE-ottersnap-psql-patch'
     runs-on: ubuntu-latest
     steps:
       - name: Auto-close if tteck script detected

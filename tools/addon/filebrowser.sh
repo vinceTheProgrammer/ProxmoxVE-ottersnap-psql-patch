@@ -2,7 +2,7 @@
 
 # Copyright (c) 2021-2026 community-scripts ORG
 # Author: tteck (tteckster) | Co-Author: MickLesk
-# License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
+# License: MIT | https://github.com/vinceTheProgrammer/ProxmoxVE-ottersnap-psql-patch/raw/main/LICENSE
 # Source: https://filebrowser.org/ | Github: https://github.com/filebrowser/filebrowser
 
 function header_info {

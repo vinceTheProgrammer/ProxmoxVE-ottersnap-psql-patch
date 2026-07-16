@@ -3,7 +3,7 @@ source <(curl -fsSL https://raw.githubusercontent.com/vinceTheProgrammer/Proxmox
 
 # Copyright (c) 2021-2026 community-scripts ORG
 # Author: johanngrobe
-# License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
+# License: MIT | https://github.com/vinceTheProgrammer/ProxmoxVE-ottersnap-psql-patch/raw/main/LICENSE
 # Source: https://github.com/oss-apps/split-pro
 
 APP="Split-Pro"

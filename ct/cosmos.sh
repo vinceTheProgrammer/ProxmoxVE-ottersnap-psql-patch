@@ -2,7 +2,7 @@
 source <(curl -fsSL https://raw.githubusercontent.com/vinceTheProgrammer/ProxmoxVE-ottersnap-psql-patch/main/misc/build.func)
 # Copyright (c) 2021-2026 community-scripts ORG
 # Author: Michel Roegl-Brunner (michelroegl-brunner)
-# License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
+# License: MIT | https://github.com/vinceTheProgrammer/ProxmoxVE-ottersnap-psql-patch/raw/main/LICENSE
 # Source: https://cosmos-cloud.io/ | Github: https://github.com/azukaar/Cosmos-Server
 
 APP="Cosmos"

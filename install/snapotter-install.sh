@@ -2,7 +2,7 @@
 
 # Copyright (c) 2021-2026 community-scripts ORG
 # Author: MickLesk (CanbiZ)
-# License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
+# License: MIT | https://github.com/vinceTheProgrammer/ProxmoxVE-ottersnap-psql-patch/raw/main/LICENSE
 # Source: https://snapotter.com
 
 source /dev/stdin <<<"$FUNCTIONS_FILE_PATH"
@@ -61,7 +61,7 @@ systemctl enable --now postgresql
 
 msg_info "Configuring PostgreSQL"
 
-sudo -u postgres psql <<'EOF'
+sudo -u postgres psql 2>/dev/null <<'EOF' || true
 DO $$
 BEGIN
     IF NOT EXISTS (
@@ -78,7 +78,7 @@ CREATE DATABASE snapotter
     ENCODING 'UTF8'
     LC_COLLATE 'C.UTF-8'
     LC_CTYPE 'C.UTF-8';
-EOF 2>/dev/null || true
+EOF
 
 sudo -u postgres psql <<'EOF'
 ALTER DATABASE snapotter OWNER TO snapotter;

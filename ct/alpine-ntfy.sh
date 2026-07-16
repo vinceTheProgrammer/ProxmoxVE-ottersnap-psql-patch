@@ -3,7 +3,7 @@ source <(curl -fsSL https://raw.githubusercontent.com/vinceTheProgrammer/Proxmox
 
 # Copyright (c) 2021-2026 community-scripts ORG
 # Author: cobalt (cobaltgit)
-# License: MIT | https://github.com/community-scripts/ProxmoxVED/raw/main/LICENSE
+# License: MIT | https://github.com/vinceTheProgrammer/ProxmoxVE-ottersnap-psql-patchD/raw/main/LICENSE
 # Source: https://ntfy.sh/
 
 APP="Alpine-ntfy"

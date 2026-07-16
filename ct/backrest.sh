@@ -2,7 +2,7 @@
 source <(curl -fsSL https://raw.githubusercontent.com/vinceTheProgrammer/ProxmoxVE-ottersnap-psql-patch/main/misc/build.func)
 # Copyright (c) 2021-2026 community-scripts ORG
 # Author: ksad (enirys31)
-# License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
+# License: MIT | https://github.com/vinceTheProgrammer/ProxmoxVE-ottersnap-psql-patch/raw/main/LICENSE
 # Source: https://garethgeorge.github.io/backrest/ | Github: https://github.com/garethgeorge/backrest
 
 APP="Backrest"

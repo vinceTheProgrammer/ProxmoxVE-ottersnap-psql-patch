@@ -3,7 +3,7 @@
 # Copyright (c) 2021-2026 tteck
 # Author: tteck (tteckster)
 # License: MIT
-# https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
+# https://github.com/vinceTheProgrammer/ProxmoxVE-ottersnap-psql-patch/raw/main/LICENSE
 
 # Use to copy all data from one Home Assistant LXC to another
 # run from the Proxmox Shell
@@ -128,4 +128,4 @@ info "Successfully Transferred Data."
 
 # Use to copy all data from one Home Assistant LXC to another
 # run from the Proxmox Shell
-# bash -c "$(curl -fsSL https://raw.githubusercontent.com/vinceTheProgrammer/ProxmoxVE-ottersnap-psql-patch/main/tools/copy-data//home-assistant-container-copy-data-home-assistant-container.sh)"
+# bash -c "$(curl -fsSL https://raw.githubusercontent.com/vinceTheProgrammer/ProxmoxVE-ottersnap-psql-patch/mainmain/tools/copy-data//home-assistant-container-copy-data-home-assistant-container.sh)"
